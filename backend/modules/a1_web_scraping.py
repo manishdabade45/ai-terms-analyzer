@@ -13,7 +13,18 @@ from typing import Dict, Any, Optional
 import requests
 from bs4 import BeautifulSoup
 
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 (College NLP Educational Project)"
+STANDARD_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Upgrade-Insecure-Requests": "1",
+}
+
+USER_AGENT = STANDARD_HEADERS["User-Agent"]
 
 def check_robots_txt(url: str, user_agent: str = "*") -> Dict[str, Any]:
     """
@@ -26,14 +37,21 @@ def check_robots_txt(url: str, user_agent: str = "*") -> Dict[str, Any]:
     robots_url = f"{parsed.scheme}://{parsed.netloc}/robots.txt"
     rp = urllib.robotparser.RobotFileParser()
     try:
-        rp.set_url(robots_url)
-        rp.read()
-        allowed = rp.can_fetch(user_agent, url)
-        return {
-            "allowed": allowed,
-            "robots_url": robots_url,
-            "reason": "Robots.txt permitted" if allowed else "Scraping disallowed by website robots.txt rules"
-        }
+        r = requests.get(robots_url, headers=STANDARD_HEADERS, timeout=5)
+        if r.status_code == 200:
+            rp.parse(r.text.splitlines())
+            allowed = rp.can_fetch(user_agent, url)
+            return {
+                "allowed": allowed,
+                "robots_url": robots_url,
+                "reason": "Robots.txt permitted" if allowed else "Scraping disallowed by website robots.txt rules"
+            }
+        else:
+            return {
+                "allowed": True,
+                "robots_url": robots_url,
+                "reason": f"Robots.txt returned HTTP {r.status_code} (default open)"
+            }
     except Exception as e:
         # If robots.txt cannot be fetched or doesn't exist, assume standard public access
         return {
@@ -64,14 +82,8 @@ def scrape_url(url: str, enforce_robots: bool = True) -> Dict[str, Any]:
             "text": ""
         }
 
-    headers = {
-        "User-Agent": USER_AGENT,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.5",
-    }
-
     try:
-        response = requests.get(url, headers=headers, timeout=12, allow_redirects=True)
+        response = requests.get(url, headers=STANDARD_HEADERS, timeout=12, allow_redirects=True)
         if response.status_code == 403:
             return {"success": False, "error": "HTTP 403 Forbidden: Access restricted or authentication required", "status_code": 403}
         if response.status_code == 404:
