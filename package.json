@@ -4,7 +4,7 @@
   "private": true,
   "description": "AI-Based Terms and Conditions Analyzer Using Natural Language Processing (NLP)",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build",
+    "build": "node build.cjs",
     "dev": "cd frontend && npm run dev",
     "test": "pytest backend/tests"
   },
