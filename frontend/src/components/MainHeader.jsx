@@ -35,9 +35,15 @@ export default function MainHeader({ backendOnline }) {
 
         {/* Right Corner Buttons */}
         <div className="flex items-center gap-3 self-end sm:self-center">
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-950/40 border border-emerald-500/30 rounded-full text-[11px] font-semibold text-emerald-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{backendOnline ? 'NLP Engine Active' : 'Connecting Engine...'}</span>
+          <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold border ${
+            backendOnline 
+              ? 'bg-emerald-950/40 border-emerald-500/30 text-emerald-400'
+              : 'bg-amber-950/40 border-amber-500/30 text-amber-300'
+          }`}>
+            <span className={`w-2 h-2 rounded-full ${
+              backendOnline ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
+            }`} />
+            <span>{backendOnline ? 'Python Backend Active' : 'Local NLP Engine Active'}</span>
           </div>
 
           <button

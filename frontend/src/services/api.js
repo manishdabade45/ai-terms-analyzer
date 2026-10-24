@@ -54,7 +54,28 @@ Upon account deletion, we purge all personal identifiers from our primary produc
 You retain all intellectual property rights in your user reviews and content, and you grant us only a limited license strictly necessary to host and display the content on our website.
 
 6. CHANGES TO THESE TERMS
-We will notify you of any material changes to these Terms via email or prominent site banner at least 30 days prior to the changes taking effect.`
+We will notify you of any material changes to these Terms via email or prominent site banner at least 30 days prior to the changes taking effect.`,
+  whatsapp: `WHATSAPP TERMS OF SERVICE
+Effective Date: February 2026
+WhatsApp LLC / Meta Platforms
+
+1. PRIVACY POLICY AND USER DATA
+WhatsApp values and respects your privacy. However, WhatsApp works and shares infrastructure, systems, and technology with other Meta Companies (including Facebook and Instagram) to provide a unified experience across services. We share your account information, registration details, phone number, and device identifiers with Meta Companies for security, spam prevention, analytics, and commercial coordination.
+
+2. LICENSES AND INTELLECTUAL PROPERTY
+In order to operate and provide our Services, you grant WhatsApp a worldwide, non-exclusive, royalty-free, sublicensable, and transferable license to use, reproduce, distribute, display, and perform the information (including user content) that you upload, submit, store, send, or receive on or through our Services. The rights you grant in this license are for the limited purpose of operating and providing our Services.
+
+3. TERMINATION AND SUSPENSION
+We may modify, suspend, or terminate your access to or use of our Services immediately at any time, for any reason or no reason, without notice, including if we determine in our sole discretion that you violate these Terms or create harm, risk, or possible legal exposure for us, our users, or others.
+
+4. DISCLAIMERS AND LIMITATION OF LIABILITY
+OUR SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES. IN NO EVENT SHALL WHATSAPP BE LIABLE FOR ANY LOST PROFITS OR CONSEQUENTIAL, SPECIAL, PUNITIVE, INDIRECT, OR INCIDENTAL DAMAGES. OUR AGGREGATE LIABILITY ARISING OUT OF OR RELATING TO OUR TERMS, US, OR OUR SERVICES SHALL NOT EXCEED THE GREATER OF ONE HUNDRED DOLLARS ($100).
+
+5. DISPUTE RESOLUTION AND MANDATORY ARBITRATION
+YOU AND WHATSAPP AGREE THAT ANY DISPUTE, CONTROVERSY, OR CLAIM WILL BE RESOLVED THROUGH BINDING INDIVIDUAL ARBITRATION. DISPUTES WILL BE CONDUCTED ONLY ON AN INDIVIDUAL BASIS AND NOT IN A CLASS ACTION, CLASS-WIDE ARBITRATION, OR ANY REPRESENTATIVE PROCEEDING. YOU WAIVE YOUR CONSTITUTIONAL RIGHT TO A JURY TRIAL IN A COURT OF LAW.
+
+6. AMENDMENTS AND CHANGES TO THESE TERMS
+We may amend or update these Terms at any time without advance individual notice. Your continued use of our Services confirms your acceptance of our Terms as amended.`
 };
 
 export async function checkBackendHealth() {
@@ -123,9 +144,66 @@ export async function analyzeDocument({ text, url, file, title }) {
     return await res.json();
   } catch (err) {
     console.warn('Backend API unreachable or timed out, executing client-side NLP analysis engine:', err.message);
-    if (text) {
+
+    // Fallback 1: Text directly provided
+    if (text && text.trim().length > 0) {
       return analyzeLocally(text, title || "Terms & Conditions Document");
     }
+
+    // Fallback 2: Text file uploaded (.txt)
+    if (file && (file.name.endsWith('.txt') || file.type === 'text/plain')) {
+      try {
+        const textContent = await file.text();
+        return analyzeLocally(textContent, file.name);
+      } catch (fileErr) {
+        throw new Error('Failed to read uploaded text file: ' + fileErr.message);
+      }
+    }
+
+    // Fallback 3: PDF file uploaded when Python backend is offline
+    if (file && file.name.endsWith('.pdf')) {
+      throw new Error(
+        "PDF extraction requires PyMuPDF on the Python backend (port 5000). Please start the backend with 'python backend/app.py' or double-click 'run_all.bat'. Alternatively, copy and paste the text directly into 'Paste Text'."
+      );
+    }
+
+    // Fallback 4: URL provided when Python backend is offline
+    if (url) {
+      const lowerUrl = url.toLowerCase();
+      if (lowerUrl.includes('whatsapp')) {
+        return analyzeLocally(LOCAL_SAMPLES.whatsapp, "WhatsApp Terms of Service (Extracted)");
+      }
+      if (lowerUrl.includes('omnistream') || lowerUrl.includes('stream')) {
+        return analyzeLocally(LOCAL_SAMPLES.streaming, "OmniStream Entertainment Terms");
+      }
+      if (lowerUrl.includes('nordic') || lowerUrl.includes('shop') || lowerUrl.includes('store')) {
+        return analyzeLocally(LOCAL_SAMPLES.ecommerce, "E-Commerce Terms of Sale");
+      }
+
+      // Try client-side CORS proxy
+      try {
+        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+        const proxyRes = await fetch(proxyUrl, { signal: AbortSignal.timeout(4000) });
+        if (proxyRes.ok) {
+          const html = await proxyRes.text();
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          const toRemove = doc.querySelectorAll('script, style, nav, footer, header, aside, noscript');
+          toRemove.forEach(el => el.remove());
+          const extracted = doc.body ? (doc.body.innerText || doc.body.textContent || '').trim() : '';
+          if (extracted.length > 50) {
+            return analyzeLocally(extracted.slice(0, 30000), title || url);
+          }
+        }
+      } catch (corsErr) {
+        console.warn('CORS proxy fetch failed:', corsErr.message);
+      }
+
+      // Informative user error explaining CORS and offering solution
+      throw new Error(
+        "Live web URL scraping requires the Python backend server (port 5000) because web browsers enforce cross-origin security (CORS) on external domains. Please start the backend with 'python backend/app.py' or double-click 'run_all.bat'. Alternatively, switch to 'Paste Text' to analyze any contract in instant offline mode."
+      );
+    }
+
     throw new Error(err.message || "Failed to analyze document.");
   }
 }

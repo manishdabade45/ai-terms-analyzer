@@ -65,6 +65,14 @@ export default function App() {
       }
     };
     init();
+
+    // Automatic polling every 5s so when Python backend is started, UI updates immediately
+    const pollTimer = setInterval(async () => {
+      const health = await checkBackendHealth();
+      setBackendOnline(health.status === 'healthy');
+    }, 5000);
+
+    return () => clearInterval(pollTimer);
   }, []);
 
   const handleLoadSample = async (sampleId) => {
@@ -187,7 +195,7 @@ export default function App() {
                     />
                   </div>
                   <p className="text-[11px] text-slate-400 m-0">
-                    Assignment 1 ethical scraper verifies <code className="text-sky-300">robots.txt</code>, strips boilerplate navigation/footers, and respects rate limits.
+                    Ethical web scraper verifies <code className="text-sky-300">robots.txt</code>, strips boilerplate navigation/footers, and respects rate limits.
                   </p>
                 </div>
               )}
