@@ -1,0 +1,66 @@
+[
+  {
+    "category": "POLITICS",
+    "headline": "Senate Passes Bipartisan Bill On Technology Privacy And Consumer Data",
+    "authors": "Amanda Terkel",
+    "link": "https://www.huffpost.com/entry/senate-privacy-bill_n_5829471",
+    "short_description": "Lawmakers reached agreement on basic consumer data protections after months of contentious debate over digital privacy rights.",
+    "date": "2018-05-14"
+  },
+  {
+    "category": "TECH",
+    "headline": "New Privacy Regulations Challenge Silicon Valley Data Harvesting Practices",
+    "authors": "Michael Calderone",
+    "link": "https://www.huffpost.com/entry/tech-privacy-gdpr_n_5829472",
+    "short_description": "Global compliance requirements are forcing major platforms to rethink how terms of service and consent agreements are presented to users.",
+    "date": "2018-04-20"
+  },
+  {
+    "category": "BUSINESS",
+    "headline": "Consumer Watchdog Fines Subscription Services For Hidden Auto-Renewal Clauses",
+    "authors": "Dave Jamieson",
+    "link": "https://www.huffpost.com/entry/subscription-fine-auto-renew_n_5829473",
+    "short_description": "Regulators cracked down on fine print clauses that automatically charged consumers without explicit pre-renewal notification.",
+    "date": "2017-11-08"
+  },
+  {
+    "category": "WELLNESS",
+    "headline": "Mindfulness Apps Update Data Sharing Policies Amid Sensitive Health Privacy Concerns",
+    "authors": "Anna Almendrala",
+    "link": "https://www.huffpost.com/entry/health-apps-privacy_n_5829474",
+    "short_description": "Mental health applications are facing scrutiny over whether personal mood logs are transmitted to third-party advertising brokers.",
+    "date": "2018-02-19"
+  },
+  {
+    "category": "ENTERTAINMENT",
+    "headline": "Streaming Giants Revise Terms Of Service Governing Shared Accounts And Passwords",
+    "authors": "Bill Bradley",
+    "link": "https://www.huffpost.com/entry/streaming-tos-changes_n_5829475",
+    "short_description": "Entertainment platforms are updating user agreements to define household boundaries and limit concurrent stream access.",
+    "date": "2017-09-12"
+  },
+  {
+    "category": "POLITICS",
+    "headline": "Supreme Court Considers Warrantless Cell Phone Location Tracking Under Fourth Amendment",
+    "authors": "Cristian Farias",
+    "link": "https://www.huffpost.com/entry/carpenter-cell-phone-privacy_n_5829476",
+    "short_description": "Justices debated whether mobile service terms imply user consent to perpetual historical location data surrender.",
+    "date": "2017-11-29"
+  },
+  {
+    "category": "BUSINESS",
+    "headline": "Arbitration Clauses In Employment Contracts Face Congressional Pushback",
+    "authors": "Daniel Marans",
+    "link": "https://www.huffpost.com/entry/mandatory-arbitration-fight_n_5829477",
+    "short_description": "Proposed legislation seeks to prohibit mandatory binding arbitration clauses that prevent employees from taking disputes to court.",
+    "date": "2018-03-07"
+  },
+  {
+    "category": "TECH",
+    "headline": "Smart Home Devices Face Scrutiny Over Constant Audio Recording Disclosures",
+    "authors": "Alexander Kaufman",
+    "link": "https://www.huffpost.com/entry/smart-speakers-audio-privacy_n_5829478",
+    "short_description": "Researchers found that terms and conditions frequently fail to plainly state how long ambient audio recordings are retained.",
+    "date": "2018-01-25"
+  }
+]

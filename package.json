@@ -1,0 +1,21 @@
+{
+  "name": "ai-terms-and-conditions-analyzer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-Based Terms and Conditions Analyzer Using Natural Language Processing (NLP)",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "cd frontend && npm run dev",
+    "test": "pytest backend/tests"
+  },
+  "keywords": [
+    "nlp",
+    "terms-and-conditions",
+    "contract-analysis",
+    "machine-learning",
+    "react",
+    "flask"
+  ],
+  "author": "Manish (PRN: 124B1C122)",
+  "license": "MIT"
+}

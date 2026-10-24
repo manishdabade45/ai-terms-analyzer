@@ -1,0 +1,26 @@
+TERMS OF SALE AND PRIVACY POLICY
+Effective Date: March 15, 2026
+Nordic Retail & Goods Co.
+
+Thank you for shopping with Nordic Retail. We are committed to protecting your privacy and providing transparent transaction terms.
+
+1. ORDERS AND PAYMENT PROCESSING
+All payments are processed securely through certified PCI-DSS compliant third-party payment gateways, and we do not store full credit card numbers on our servers. Prices are displayed in US Dollars and include applicable sales taxes at checkout.
+
+2. CANCELLATION AND REFUND POLICY
+You may cancel your order at any time before shipment for a full 100% refund. We offer a 30-day money-back guarantee on all returned physical goods in original condition. Return shipping costs are reimbursed for defective products.
+
+3. DATA PRIVACY AND PROTECTION
+We collect information you provide directly to us, such as your name, email address, postal address, phone number, and payment information when you register for an account. We do not sell, rent, or trade your personal identifiable information to third parties for monetary consideration. We may disclose your information to trusted third-party service providers solely to perform payment processing, cloud hosting, and customer support on our behalf.
+
+4. DATA RETENTION AND DELETION
+Upon account deletion, we purge all personal identifiers from our primary production databases within thirty (30) days, retaining only minimal records required by federal tax compliance.
+
+5. INTELLECTUAL PROPERTY
+You retain all intellectual property rights in your user reviews and content, and you grant us only a limited license strictly necessary to host and display the content on our website.
+
+6. CHANGES TO THESE TERMS
+We will notify you of any material changes to these Terms via email or prominent site banner at least 30 days prior to the changes taking effect. Continued use after the 30-day notice period signifies your agreement to the updated terms.
+
+7. GOVERNING LAW AND SEVERABILITY
+These Terms shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions. If any provision of these Terms is found to be unlawful, void, or unenforceable, that provision will be deemed severable and will not affect the validity of the remaining provisions.

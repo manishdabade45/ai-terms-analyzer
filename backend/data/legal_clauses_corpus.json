@@ -1,0 +1,242 @@
+[
+  {
+    "text": "We collect information you provide directly to us, such as your name, email address, postal address, phone number, and payment information when you register for an account.",
+    "category": "Privacy & Data Collection",
+    "risk_level": "Low",
+    "risk_category": "Standard Account Information",
+    "risk_reason": "Standard collection of necessary user account details for service operation.",
+    "recommendation": "Normal operational requirement. Ensure you provide accurate contact details."
+  },
+  {
+    "text": "We automatically collect precise geolocation data from your mobile device continuously, even when the application is closed or not in active use.",
+    "category": "Privacy & Data Collection",
+    "risk_level": "High",
+    "risk_category": "Persistent Location Tracking",
+    "risk_reason": "Continuous background location surveillance poses severe privacy intrusions and device battery drain.",
+    "recommendation": "Revoke background location permissions in your device settings."
+  },
+  {
+    "text": "We may collect biometric identifiers including facial geometry, voiceprints, and keystroke dynamics to authenticate your account and train machine learning models.",
+    "category": "Privacy & Data Collection",
+    "risk_level": "High",
+    "risk_category": "Biometric Data Harvesting",
+    "risk_reason": "Biometric data cannot be changed if breached, posing irrevocable identity theft risks.",
+    "recommendation": "Review biometric consent laws in your jurisdiction or decline optional biometric features."
+  },
+  {
+    "text": "We do not sell, rent, or trade your personal identifiable information to third parties for monetary consideration.",
+    "category": "Third-Party Data Sharing",
+    "risk_level": "Low",
+    "risk_category": "No Direct Data Sale",
+    "risk_reason": "Protective clause explicitly restricting monetization of user personal data.",
+    "recommendation": "Consumer protective provision."
+  },
+  {
+    "text": "We reserve the right to share, sell, lease, or license your personal information, browsing history, and purchase records with advertising partners and data brokers.",
+    "category": "Third-Party Data Sharing",
+    "risk_level": "High",
+    "risk_category": "Third-Party Data Commercialization",
+    "risk_reason": "Allows commercial exploitation and distribution of your private browsing and identity records to unknown brokers.",
+    "recommendation": "Submit an opt-out request under CCPA/GDPR if available, or avoid providing sensitive personal details."
+  },
+  {
+    "text": "We may disclose your information to trusted third-party service providers solely to perform payment processing, cloud hosting, and customer support on our behalf.",
+    "category": "Third-Party Data Sharing",
+    "risk_level": "Low",
+    "risk_category": "Service Provider Subprocessing",
+    "risk_reason": "Standard operational sub-processing necessary to deliver the requested service.",
+    "recommendation": "Normal operational clause. Verify that providers are bound by confidentiality."
+  },
+  {
+    "text": "Your subscription will automatically renew at the end of each billing cycle at the standard non-promotional rate unless you cancel at least 48 hours prior to renewal.",
+    "category": "Payment & Billing",
+    "risk_level": "Medium",
+    "risk_category": "Automatic Renewal & Auto-Billing",
+    "risk_reason": "Automatic renewals can result in unexpected recurring credit card charges if you miss the cancellation window.",
+    "recommendation": "Set a calendar reminder several days before the trial or billing period ends."
+  },
+  {
+    "text": "All subscription fees and purchases made through the service are strictly non-refundable under any circumstances, including service outages or early account termination.",
+    "category": "Cancellation & Refund",
+    "risk_level": "High",
+    "risk_category": "Strict No-Refund Policy",
+    "risk_reason": "Denies statutory consumer rights to refunds even when the service is defective or unavailable.",
+    "recommendation": "Consider paying via credit cards that offer merchant chargeback dispute protections."
+  },
+  {
+    "text": "You may cancel your subscription at any time through your account settings page, and cancellation will take effect at the conclusion of your current billing period.",
+    "category": "Cancellation & Refund",
+    "risk_level": "Low",
+    "risk_category": "Straightforward Cancellation",
+    "risk_reason": "Clear, self-service cancellation process without deceptive retention dark patterns.",
+    "recommendation": "Fair consumer policy."
+  },
+  {
+    "text": "IN NO EVENT SHALL THE COMPANY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES.",
+    "category": "Limitation of Liability",
+    "risk_level": "Medium",
+    "risk_category": "Broad Consequential Damages Disclaimer",
+    "risk_reason": "Standard corporate disclaimer shifting downstream commercial risks and indirect losses entirely onto the user.",
+    "recommendation": "Standard commercial terms, but be aware company disclaims liability for data loss."
+  },
+  {
+    "text": "OUR TOTAL AGGREGATE LIABILITY ARISING OUT OF OR RELATING TO THESE TERMS SHALL NOT EXCEED THE GREATER OF FIFTY DOLLARS ($50) OR THE AMOUNT YOU PAID IN THE PAST MONTH.",
+    "category": "Limitation of Liability",
+    "risk_level": "High",
+    "risk_category": "Severe Liability Cap",
+    "risk_reason": "Caps maximum monetary recovery to an insignificant amount ($50) even if the company's gross negligence causes major financial injury.",
+    "recommendation": "High risk for business or mission-critical use of the service."
+  },
+  {
+    "text": "The company may suspend or terminate your account immediately at any time, for any reason or no reason, without notice and without liability to you.",
+    "category": "Termination & Suspension",
+    "risk_level": "High",
+    "risk_category": "Termination Without Cause or Notice",
+    "risk_reason": "Enables unilateral deletion of your account and user data without explanation, warning, or recourse.",
+    "recommendation": "Keep regular offline backups of any important content stored on the platform."
+  },
+  {
+    "text": "We will provide you with at least thirty (30) days advance notice before terminating your account for convenience, allowing you an opportunity to export your data.",
+    "category": "Termination & Suspension",
+    "risk_level": "Low",
+    "risk_category": "Grace Period For Data Export",
+    "risk_reason": "Fair clause providing adequate warning and data retrieval rights before termination.",
+    "recommendation": "Equitable and transparent provision."
+  },
+  {
+    "text": "YOU AND THE COMPANY AGREE THAT ANY DISPUTE RESOLUTION PROCEEDINGS WILL BE CONDUCTED ONLY ON AN INDIVIDUAL BASIS AND NOT IN A CLASS, CONSOLIDATED OR REPRESENTATIVE ACTION.",
+    "category": "Dispute Resolution & Arbitration",
+    "risk_level": "High",
+    "risk_category": "Mandatory Class Action Waiver",
+    "risk_reason": "Strips consumers of the ability to join class action lawsuits to collectively remedy widespread micro-harms or deceptive practices.",
+    "recommendation": "Check if an arbitration opt-out notice can be mailed within 30 days of registration."
+  },
+  {
+    "text": "Any controversy or claim arising out of these Terms shall be settled by binding arbitration in accordance with the commercial arbitration rules of the American Arbitration Association.",
+    "category": "Dispute Resolution & Arbitration",
+    "risk_level": "High",
+    "risk_category": "Forced Binding Arbitration",
+    "risk_reason": "Forces disputes out of public courtrooms into private arbitration tribunals, often far from the consumer's domicile.",
+    "recommendation": "Look for an opt-out mechanism usually detailed in the arbitration section."
+  },
+  {
+    "text": "By submitting or posting content to the platform, you grant us an irrevocable, perpetual, worldwide, royalty-free, transferable license to use, reproduce, modify, and distribute your content.",
+    "category": "Intellectual Property & Licensing",
+    "risk_level": "High",
+    "risk_category": "Perpetual Content Rights Transfer",
+    "risk_reason": "The platform claims permanent ownership-like exploitation rights over user-created works even after account cancellation.",
+    "recommendation": "Do not post proprietary, copyrighted, or sensitive creative work if you wish to retain exclusive rights."
+  },
+  {
+    "text": "You retain all intellectual property rights in your user content, and you grant us only a limited license strictly necessary to host and display the content to your selected audience.",
+    "category": "Intellectual Property & Licensing",
+    "risk_level": "Low",
+    "risk_category": "Limited Operational Content License",
+    "risk_reason": "Respects user copyright and only requests functional permissions required to run the service.",
+    "recommendation": "Fair and protective copyright terms."
+  },
+  {
+    "text": "We may modify these Terms at any time without notice, and your continued use of the service constitutes immediate and binding acceptance of all modifications.",
+    "category": "Changes to Terms & Notice",
+    "risk_level": "High",
+    "risk_category": "Unilateral Terms Modification Without Notice",
+    "risk_reason": "Allows the vendor to secretly alter contract obligations, privacy standards, or prices without informing you.",
+    "recommendation": "Check the agreement version date periodically or use terms-monitoring browser tools."
+  },
+  {
+    "text": "We will notify you of any material changes to these Terms via email or prominent site banner at least 30 days prior to the changes taking effect.",
+    "category": "Changes to Terms & Notice",
+    "risk_level": "Low",
+    "risk_category": "Advance Notice of Changes",
+    "risk_reason": "Fair notification policy giving users reasonable advance notice to review or decline changes.",
+    "recommendation": "Ensure your registered email address is active to receive change notices."
+  },
+  {
+    "text": "We retain your personal data indefinitely, even following deletion of your account, for analytics, compliance, and our own business development purposes.",
+    "category": "Privacy & Data Collection",
+    "risk_level": "High",
+    "risk_category": "Indefinite Data Retention",
+    "risk_reason": "Permanent retention of user records creates perpetual data breach exposure and denies the right to be forgotten.",
+    "recommendation": "Submit a formal GDPR / CCPA erasure request upon deleting your account."
+  },
+  {
+    "text": "Upon account deletion, we purge all personal identifiers from our primary production databases within thirty (30) days.",
+    "category": "Privacy & Data Collection",
+    "risk_level": "Low",
+    "risk_category": "Prompt Data Deletion",
+    "risk_reason": "Provides a definite timeline for removing personal records upon account termination.",
+    "recommendation": "Transparent and privacy-respecting."
+  },
+  {
+    "text": "We may monitor, record, and transcribe your private direct messages, voice calls, and customer interactions using automated speech-to-text algorithms.",
+    "category": "Privacy & Data Collection",
+    "risk_level": "High",
+    "risk_category": "Private Communications Interception",
+    "risk_reason": "Direct surveillance of private communications violates basic consumer confidentiality expectations.",
+    "recommendation": "Use end-to-end encrypted messaging alternatives for sensitive conversations."
+  },
+  {
+    "text": "All payments are processed securely through certified PCI-DSS compliant third-party payment gateways, and we do not store full credit card numbers on our servers.",
+    "category": "Payment & Billing",
+    "risk_level": "Low",
+    "risk_category": "PCI-DSS Compliant Processing",
+    "risk_reason": "Adheres to industry standard security safeguards for payment card information.",
+    "recommendation": "Protective industry practice."
+  },
+  {
+    "text": "You agree to defend, indemnify, and hold harmless the company, its officers, and affiliates from any third-party claims, liabilities, or legal fees arising from your use of the service.",
+    "category": "Limitation of Liability",
+    "risk_level": "Medium",
+    "risk_category": "Broad Indemnification Clause",
+    "risk_reason": "Obligates the user to pay legal defense bills and damage judgments for the company if a third party sues.",
+    "recommendation": "Standard in B2B agreements, but potentially burdensome for individual consumers."
+  },
+  {
+    "text": "You must be at least 18 years of age, or the age of legal majority in your jurisdiction, to create an account and agree to these Terms.",
+    "category": "General & Miscellaneous",
+    "risk_level": "Low",
+    "risk_category": "Age Requirement",
+    "risk_reason": "Standard legal capacity requirement to enter into contracts.",
+    "recommendation": "Verify compliance with local age requirements."
+  },
+  {
+    "text": "These Terms shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions.",
+    "category": "General & Miscellaneous",
+    "risk_level": "Low",
+    "risk_category": "Governing Law Specification",
+    "risk_reason": "Standard legal jurisdiction clause specifying applicable legal framework.",
+    "recommendation": "Informative; determines which state laws interpret the contract."
+  },
+  {
+    "text": "We use tracking pixels, web beacons, and persistent browser fingerprinting to track your activity across third-party websites outside of our domain.",
+    "category": "Privacy & Data Collection",
+    "risk_level": "High",
+    "risk_category": "Cross-Site Fingerprinting & Tracking",
+    "risk_reason": "Builds comprehensive behavioral profiles by tracking online activities across unrelated third-party websites.",
+    "recommendation": "Use privacy-focused browsers or anti-tracking browser extensions."
+  },
+  {
+    "text": "If any provision of these Terms is found to be unlawful, void, or unenforceable, that provision will be deemed severable and will not affect the validity of the remaining provisions.",
+    "category": "General & Miscellaneous",
+    "risk_level": "Low",
+    "risk_category": "Severability Clause",
+    "risk_reason": "Standard boilerplate clause preserving the rest of the contract if one part is deemed invalid.",
+    "recommendation": "Standard contractual boilerplate."
+  },
+  {
+    "text": "We may charge your payment method a non-refundable administrative reactivation fee of up to $75 if your account is temporarily suspended for non-payment.",
+    "category": "Payment & Billing",
+    "risk_level": "Medium",
+    "risk_category": "Hidden Penalties & Administrative Fees",
+    "risk_reason": "Imposes punitive administrative fees that may not have been highlighted during sign-up.",
+    "recommendation": "Monitor payment methods to avoid accidental failed transaction penalties."
+  },
+  {
+    "text": "You agree that we may access, scan, and review your cloud storage files and uploaded attachments for content moderation and algorithmic improvement.",
+    "category": "Privacy & Data Collection",
+    "risk_level": "High",
+    "risk_category": "Cloud File Content Inspection",
+    "risk_reason": "Violates expectations of personal cloud storage privacy by scanning file contents.",
+    "recommendation": "Encrypt sensitive files client-side before uploading to cloud storage."
+  }
+]

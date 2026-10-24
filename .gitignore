@@ -1,0 +1,31 @@
+# Node & Frontend dependencies
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Pytest & Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases & logs
+*.log
+backend/*.db
+
+# Editor & OS settings
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
