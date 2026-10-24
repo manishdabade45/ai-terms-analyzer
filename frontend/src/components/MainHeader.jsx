@@ -37,7 +37,7 @@ export default function MainHeader({ backendOnline }) {
         <div className="flex items-center gap-3 self-end sm:self-center">
           <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-950/40 border border-emerald-500/30 rounded-full text-[11px] font-semibold text-emerald-400">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{backendOnline ? 'NLP Engine Active' : 'Connecting Engine...'}</span>
+            <span>{backendOnline ? 'NLP Engine: Python Active' : 'NLP Engine: Client-Side Active'}</span>
           </div>
 
           <button

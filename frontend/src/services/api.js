@@ -131,20 +131,32 @@ export async function analyzeDocument({ text, url, file, title }) {
 }
 
 export async function fetchHistory() {
-  const res = await fetch(`${BASE_URL}/history`);
-  if (!res.ok) throw new Error('Failed to load history');
-  return await res.json();
+  try {
+    const res = await fetch(`${BASE_URL}/history`, { signal: AbortSignal.timeout(3000) });
+    if (!res.ok) throw new Error('Failed to load history');
+    return await res.json();
+  } catch (err) {
+    return { history: [], count: 0, offline: true };
+  }
 }
 
 export async function fetchHistoryDetail(id) {
-  const res = await fetch(`${BASE_URL}/history/${id}`);
-  if (!res.ok) throw new Error('Failed to load analysis record');
-  return await res.json();
+  try {
+    const res = await fetch(`${BASE_URL}/history/${id}`, { signal: AbortSignal.timeout(3000) });
+    if (!res.ok) throw new Error('Failed to load analysis record');
+    return await res.json();
+  } catch (err) {
+    throw new Error('Backend is currently offline. Start backend (python backend/app.py) to access SQLite history.');
+  }
 }
 
 export async function deleteHistoryItem(id) {
-  const res = await fetch(`${BASE_URL}/history/${id}`, { method: 'DELETE' });
-  return await res.json();
+  try {
+    const res = await fetch(`${BASE_URL}/history/${id}`, { method: 'DELETE', signal: AbortSignal.timeout(3000) });
+    return await res.json();
+  } catch (err) {
+    return { success: false, error: 'Backend offline' };
+  }
 }
 
 export function getPdfDownloadUrl(analysisId) {
