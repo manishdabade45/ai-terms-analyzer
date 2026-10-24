@@ -331,5 +331,7 @@ def assignment_10_sentiment():
     return jsonify(result)
 
 if __name__ == "__main__":
-    print("Starting AI Terms & Conditions Analyzer Server on port 5000...")
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5001))
+    print(f"Starting AI Terms & Conditions Analyzer Server on port {port}...")
+    print(f"Backend API URL: http://127.0.0.1:{port}")
+    app.run(host="0.0.0.0", port=port, debug=False)

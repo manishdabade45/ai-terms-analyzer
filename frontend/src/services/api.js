@@ -163,7 +163,7 @@ export async function analyzeDocument({ text, url, file, title }) {
     // Fallback 3: PDF file uploaded when Python backend is offline
     if (file && file.name.endsWith('.pdf')) {
       throw new Error(
-        "PDF extraction requires PyMuPDF on the Python backend (port 5000). Please start the backend with 'python backend/app.py' or double-click 'run_all.bat'. Alternatively, copy and paste the text directly into 'Paste Text'."
+        "PDF extraction requires PyMuPDF on the Python backend (port 5001). Please start the backend with 'python backend/app.py' or double-click 'run_all.bat'. Alternatively, copy and paste the text directly into 'Paste Text'."
       );
     }
 
@@ -200,7 +200,7 @@ export async function analyzeDocument({ text, url, file, title }) {
 
       // Informative user error explaining CORS and offering solution
       throw new Error(
-        "Live web URL scraping requires the Python backend server (port 5000) because web browsers enforce cross-origin security (CORS) on external domains. Please start the backend with 'python backend/app.py' or double-click 'run_all.bat'. Alternatively, switch to 'Paste Text' to analyze any contract in instant offline mode."
+        "Live web URL scraping requires the Python backend server (port 5001) because web browsers enforce cross-origin security (CORS) on external domains. Please start the backend with 'python backend/app.py' or double-click 'run_all.bat'. Alternatively, switch to 'Paste Text' to analyze any contract in instant offline mode."
       );
     }
 

@@ -5,7 +5,9 @@
   "description": "AI-Based Terms and Conditions Analyzer Using Natural Language Processing (NLP)",
   "scripts": {
     "build": "cd frontend && npm install && npm run build",
-    "dev": "cd frontend && npm run dev",
+    "dev": "node dev.js",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "python backend/app.py",
     "test": "pytest backend/tests"
   },
   "keywords": [

@@ -12,7 +12,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:5000',
+        target: 'http://127.0.0.1:5001',
         changeOrigin: true,
         secure: false,
         configure: (proxy, _options) => {
@@ -20,7 +20,7 @@ export default defineConfig({
             if (res && !res.headersSent && typeof res.writeHead === 'function') {
               res.writeHead(503, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify({ 
-                error: 'Backend API server is offline (port 5000). Running in local client-side mode.',
+                error: 'Backend API server is offline (port 5001). Running in local client-side mode.',
                 status: 'offline'
               }));
             }
