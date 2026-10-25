@@ -39,8 +39,8 @@ def extract_named_entities(text: str) -> Dict[str, Any]:
         return {"entities": [], "counts_by_type": {}, "total_entities": 0}
 
     nlp = get_spacy_model()
-    # Process up to 50,000 characters to keep execution snappy in interactive environments
-    doc = nlp(text[:50000])
+    # Process up to 20,000 characters to keep execution fast and snappy
+    doc = nlp(text[:20000])
 
     relevant_types = {"ORG", "DATE", "MONEY", "PERCENT", "GPE", "LAW", "PRODUCT", "PERSON", "CARDINAL"}
     entities = []

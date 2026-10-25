@@ -116,6 +116,9 @@ export async function fetchSampleContent(sampleId) {
 }
 
 export async function analyzeDocument({ text, url, file, title }) {
+  let backendFailedToConnect = false;
+  let backendError = null;
+
   try {
     let options = {};
     if (file) {
@@ -125,32 +128,55 @@ export async function analyzeDocument({ text, url, file, title }) {
       options = {
         method: 'POST',
         body: formData,
-        signal: AbortSignal.timeout(8000)
+        signal: AbortSignal.timeout(60000)
       };
     } else {
       options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text, url, title }),
-        signal: AbortSignal.timeout(8000)
+        signal: AbortSignal.timeout(60000)
       };
     }
 
     const res = await fetch(`${BASE_URL}/analyze`, options);
-    if (!res.ok) {
-      const data = await res.json();
-      throw new Error(data.error || 'Server analysis failed');
-    }
-    return await res.json();
-  } catch (err) {
-    console.warn('Backend API unreachable or timed out, executing client-side NLP analysis engine:', err.message);
 
+    // If proxy returned 503 (backend genuinely offline)
+    if (res.status === 503) {
+      backendFailedToConnect = true;
+    } else if (!res.ok) {
+      // Backend IS connected, but the scraper or pipeline returned an error
+      let data = {};
+      try { data = await res.json(); } catch(e) {}
+      throw new Error(data.error || `Server returned error (${res.status})`);
+    } else {
+      // 200 OK - Return backend analysis result!
+      return await res.json();
+    }
+  } catch (err) {
+    // If backend was reached and returned a real application error, rethrow it directly!
+    if (!backendFailedToConnect && !err.message?.includes('Failed to fetch') && !err.message?.includes('NetworkError') && err.name !== 'TimeoutError' && err.name !== 'AbortError') {
+      throw err;
+    }
+
+    if (err.name === 'TimeoutError' || err.name === 'AbortError' || err.message?.includes('aborted')) {
+      throw new Error(
+        "Analysis timed out while fetching or processing this webpage. The website may be very large or using anti-bot protections. Please copy the terms text directly and paste into 'Paste Text'."
+      );
+    }
+
+    backendFailedToConnect = true;
+    backendError = err;
+  }
+
+  // If backend was genuinely offline / unreachable:
+  if (backendFailedToConnect) {
     // Fallback 1: Text directly provided
     if (text && text.trim().length > 0) {
       return analyzeLocally(text, title || "Terms & Conditions Document");
     }
 
-    // Fallback 2: Text file uploaded (.txt)
+    // Fallback 2: Text file (.txt)
     if (file && (file.name.endsWith('.txt') || file.type === 'text/plain')) {
       try {
         const textContent = await file.text();
@@ -160,14 +186,14 @@ export async function analyzeDocument({ text, url, file, title }) {
       }
     }
 
-    // Fallback 3: PDF file uploaded when Python backend is offline
+    // Fallback 3: PDF file
     if (file && file.name.endsWith('.pdf')) {
       throw new Error(
-        "PDF extraction requires PyMuPDF on the Python backend (port 5001). Please start the backend with 'python backend/app.py' or double-click 'run_all.bat'. Alternatively, copy and paste the text directly into 'Paste Text'."
+        "PDF extraction requires PyMuPDF on the Python backend (port 5001). Please start the backend with 'npm run dev'. Alternatively, copy and paste the text directly into 'Paste Text'."
       );
     }
 
-    // Fallback 4: URL provided when Python backend is offline
+    // Fallback 4: URL provided when backend is genuinely offline
     if (url) {
       const lowerUrl = url.toLowerCase();
       if (lowerUrl.includes('whatsapp')) {
@@ -183,7 +209,7 @@ export async function analyzeDocument({ text, url, file, title }) {
       // Try client-side CORS proxy
       try {
         const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-        const proxyRes = await fetch(proxyUrl, { signal: AbortSignal.timeout(4000) });
+        const proxyRes = await fetch(proxyUrl, { signal: AbortSignal.timeout(5000) });
         if (proxyRes.ok) {
           const html = await proxyRes.text();
           const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -198,14 +224,13 @@ export async function analyzeDocument({ text, url, file, title }) {
         console.warn('CORS proxy fetch failed:', corsErr.message);
       }
 
-      // Informative user error explaining CORS and offering solution
       throw new Error(
-        "Live web URL scraping requires the Python backend server (port 5001) because web browsers enforce cross-origin security (CORS) on external domains. Please start the backend with 'python backend/app.py' or double-click 'run_all.bat'. Alternatively, switch to 'Paste Text' to analyze any contract in instant offline mode."
+        "Backend server is offline on port 5001. Live URL scraping requires the Python backend. Please start it with 'npm run dev' or 'python backend/app.py'. Alternatively, switch to 'Paste Text' to analyze any contract in client-side mode."
       );
     }
-
-    throw new Error(err.message || "Failed to analyze document.");
   }
+
+  throw new Error(backendError?.message || "Failed to analyze document.");
 }
 
 export async function fetchHistory() {

@@ -11,7 +11,7 @@ console.log('========================================================\n');
 const pyCmd = process.platform === 'win32' ? 'python' : 'python3';
 const backend = spawn(pyCmd, ['backend/app.py'], {
   stdio: 'inherit',
-  shell: true
+  shell: process.platform === 'win32'
 });
 
 backend.on('error', (err) => {
@@ -24,7 +24,7 @@ const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const frontend = spawn(npmCmd, ['run', 'dev'], {
   cwd: path.join(__dirname, 'frontend'),
   stdio: 'inherit',
-  shell: true
+  shell: process.platform === 'win32'
 });
 
 frontend.on('error', (err) => {

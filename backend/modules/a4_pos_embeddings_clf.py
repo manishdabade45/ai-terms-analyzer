@@ -42,7 +42,7 @@ def pos_tagging_analysis(text: str) -> Dict[str, Any]:
     if not text:
         return {"tagged_tokens": [], "pos_distribution": {}, "deontic_modals": []}
 
-    tokens = word_tokenize(text)
+    tokens = word_tokenize(text[:20000])
     nltk_tagged = nltk.pos_tag(tokens)
 
     pos_counts = {}

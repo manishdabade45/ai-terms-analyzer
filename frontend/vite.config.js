@@ -9,12 +9,14 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
+    host: '0.0.0.0',
     port: 3000,
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:5001',
         changeOrigin: true,
         secure: false,
+        timeout: 60000,
         configure: (proxy, _options) => {
           proxy.on('error', (err, _req, res) => {
             if (res && !res.headersSent && typeof res.writeHead === 'function') {
